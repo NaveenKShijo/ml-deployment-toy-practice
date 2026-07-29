@@ -41,7 +41,7 @@ jobs:
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
 
       - name: package model into .tar.gz file
-        run: tar -C models -czf model.tar.gz model.pkl
+        run: tar -C models -czf model.tar.gz model.pkl scaler.pkl
 
       - name: upload .tar.gz file to s3
         run: aws s3 cp model.tar.gz s3://${{ secrets.S3_BUCKET }}/models/model.tar.gz
