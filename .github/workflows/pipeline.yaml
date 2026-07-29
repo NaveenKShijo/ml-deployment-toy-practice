@@ -52,5 +52,5 @@ jobs:
           SAGEMAKER_ROLE: ${{ secrets.SAGEMAKER_ROLE }}
           IMAGE_URI: ${{ steps.login-ecr.outputs.registry }}/first_namespace/first_ecr:${{ github.sha }}
           MODEL_DATA_URL: s3://${{ secrets.S3_BUCKET }}/models/model.tar.gz
-          ENDPOINT_NAME: practice-model-endpoint
+          ENDPOINT_NAME: practice-firstmodel-endpoint
         run: python inference/deploy.py
