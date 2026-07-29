@@ -3,14 +3,26 @@ import joblib
 import pandas as pd
 import numpy as np
 
+import traceback
+import os
+
 app = FastAPI()
 
 # SageMaker automatically extracts the model.tar.gz contents into /opt/ml/model
+model_dir = "/opt/ml/model"
+print(f"Looking for model artifacts in: {model_dir}")
+if os.path.exists(model_dir):
+    print(f"Contents of {model_dir}: {os.listdir(model_dir)}")
+else:
+    print(f"WARNING: {model_dir} does not exist!")
+
 try:
-    model = joblib.load("/opt/ml/model/model.pkl")
-    scaler = joblib.load("/opt/ml/model/scaler.pkl")
+    model = joblib.load(os.path.join(model_dir, "model.pkl"))
+    scaler = joblib.load(os.path.join(model_dir, "scaler.pkl"))
+    print("Model and scaler loaded successfully.")
 except Exception as e:
-    print(f"Warning: Could not load model or scaler: {e}")
+    print(f"ERROR: Could not load model or scaler: {e}")
+    traceback.print_exc()
     model = None
     scaler = None
 

@@ -5,7 +5,7 @@ ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1
 COPY inference/requirements_inference.txt /tmp/requirements_inference.txt
 RUN pip install --no-cache-dir -r /tmp/requirements_inference.txt
 
-WORKDIR opt/ml/code
+WORKDIR /opt/ml/code
 
 COPY . .
 
