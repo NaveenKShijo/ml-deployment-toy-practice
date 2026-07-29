@@ -48,7 +48,7 @@ def deploy():
                 'VariantName': 'AllTraffic',
                 'ModelName': model_name,
                 'InitialInstanceCount': 1,
-                'InstanceType': 'ml.t2.medium',  # Adjust instance type as needed
+                'InstanceType': 'ml.c5.large',  # Adjust instance type as needed
             }
         ]
     )
