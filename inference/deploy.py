@@ -36,7 +36,10 @@ def deploy():
             raise
 
     # 2. Create Endpoint Configuration
-    endpoint_config_name = f"{model_name}-config-{int(time.time())}"
+    # SageMaker has a 63-character limit for EndpointConfigName.
+    # We truncate model_name to leave room for '-config-' and the 10-digit timestamp.
+    short_model_name = model_name[:44]
+    endpoint_config_name = f"{short_model_name}-config-{int(time.time())}"
     print(f"Creating Endpoint Configuration: {endpoint_config_name}...")
     sagemaker_client.create_endpoint_config(
         EndpointConfigName=endpoint_config_name,
