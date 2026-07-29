@@ -11,5 +11,6 @@ COPY . .
 
 EXPOSE 8080
 
-CMD ["uvicorn", "inference.inference:app", "--host", "0.0.0.0", "--port", "8080"]
-
+# SageMaker passes the argument "serve" to the container.
+# By using ENTRYPOINT with sh -c, the "serve" argument is ignored.
+ENTRYPOINT ["sh", "-c", "uvicorn inference.inference:app --host 0.0.0.0 --port 8080"]
