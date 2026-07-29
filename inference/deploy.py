@@ -7,7 +7,7 @@ def deploy():
     sagemaker_client = boto3.client('sagemaker')
 
     # Get deployment parameters from environment variables
-    model_name = os.environ.get('MODEL_NAME', f'practice-model-{int(time.time())}')
+    model_name = os.environ.get('MODEL_NAME', f'practice-model-1')
     role_arn = os.environ['SAGEMAKER_ROLE']
     image_uri = os.environ['IMAGE_URI']
     model_data_url = os.environ['MODEL_DATA_URL']
